@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "r80aMNQ8iEL25dCeON60ds3kBrRAIqjeOJh6cTsihMzqEeeaVFYqfk9x6SdEypOCrQuLHEn8I7/DsK+281e6lA==",
+  "dgSpecHash": "fCBiHw+8G8V1TALEAOlZd5agNalcFZveK/tUYxNxFamm4D2b8u6v8ASzu/5hy8tcqWs/iftMzG+HakHolXaKMg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sevv\\source\\repos\\UltimateComicTranslatorTool\\UltimateComicTranslatorTool\\UltimateComicTranslatorTool.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\sevas\\Documents\\REPOS\\UltimateComicTranslatorTool\\PROJECT\\UltimateComicTranslatorTool\\UltimateComicTranslatorTool.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sevas\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.22\\microsoft.netcore.app.host.win-x64.3.1.22.nupkg.sha512",
+    "C:\\Users\\sevas\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\sevas\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\sevas\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512"
+  ],
   "logs": []
 }

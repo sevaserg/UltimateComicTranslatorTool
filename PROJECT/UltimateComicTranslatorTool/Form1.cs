@@ -22,7 +22,7 @@ namespace UltimateComicTranslatorTool
             InitializeComponent();
             pictureBox.MouseClick += new MouseEventHandler(editCircles);
             pts = new Pt[1];
-            pts[0] = new Pt(10, 10, "", "Test");
+            pts[0] = new Pt(10, 10, "", "Test", "");
 
 
             filesubitems = new ToolStripMenuItem[3];
@@ -44,6 +44,7 @@ namespace UltimateComicTranslatorTool
             fwdBtn.Click += new EventHandler(fwdEvt);
             bckBtn.Click += new EventHandler(bckEvt);
             textBox.TextChanged += new EventHandler(dataChange);
+            commentBox.TextChanged += new EventHandler(dataChange);
 
             pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
         }
@@ -82,6 +83,7 @@ namespace UltimateComicTranslatorTool
                 filesubitems[1].Enabled = true;
                 pages = System.IO.Directory.GetFiles(currentFolder);
                 textBox.Text = "";
+                commentBox.Text = "";
                 if (System.IO.File.Exists(currentFolder + "\\savefile.uctt"))
                 {
                     String s = System.IO.File.ReadAllText(currentFolder + "\\savefile.uctt");
@@ -97,8 +99,14 @@ namespace UltimateComicTranslatorTool
                                     Pt newpt = new Pt(int.Parse(str.Split("<~~param_razdel~~>")[0]),
                                                       int.Parse(str.Split("<~~param_razdel~~>")[1]),
                                                       str.Split("<~~param_razdel~~>")[2],
-                                                      str.Split("<~~param_razdel~~>")[3]
+                                                      str.Split("<~~param_razdel~~>")[3],
+                                                      ""
                                                       );
+
+                                    if (str.Split("<~~param_razdel~~>").Length > 4)
+                                    {
+                                        newpt.comment = str.Split("<~~param_razdel~~>")[4];
+                                    }
                                     ptsList.Add(newpt);
                                 }
                             }
@@ -127,7 +135,6 @@ namespace UltimateComicTranslatorTool
                 {
                     pageChoice.Enabled = false;
                 }
-                //textBox.Text += page+ Environment.NewLine;
             }
             catch
             {
@@ -136,18 +143,21 @@ namespace UltimateComicTranslatorTool
         }
         private void saveEvt(object sender, EventArgs e)
         {
-            save();
-
+                save();
         }
         private void save()
         {
             String s = "";
             foreach (Pt pt in pts)
             {
-                s += pt.X + "<~~param_razdel~~>" + pt.Y + "<~~param_razdel~~>" + pt.file + "<~~param_razdel~~>" + pt.contents + "<~~obj_razdel~~>";
+                s += pt.X + "<~~param_razdel~~>" + pt.Y + "<~~param_razdel~~>" + pt.file + "<~~param_razdel~~>" + pt.contents + "<~~param_razdel~~>" + pt.comment + "<~~obj_razdel~~>";
             }
-            if (System.IO.File.Exists(currentFolder + "\\savefile.uctt"))
-                System.IO.File.Delete(currentFolder + "\\savefile.uctt");
+            try
+            {
+                if (System.IO.File.Exists(currentFolder + "\\savefile.uctt"))
+                    System.IO.File.Delete(currentFolder + "\\savefile.uctt");
+            }
+            catch { }
             System.IO.File.WriteAllText(currentFolder+"\\savefile.uctt", s);
         }
         private void exitEvt(object sender, EventArgs e)
@@ -170,7 +180,7 @@ namespace UltimateComicTranslatorTool
                             removePt = true;
                     }
 
-                    Pt newpt = new Pt(e.X, e.Y, pageChoice.Text, "");
+                    Pt newpt = new Pt(e.X, e.Y, pageChoice.Text, "", "");
                     if (removePt == false)
                     {
                         ptsList.Add(newpt);
@@ -205,13 +215,19 @@ namespace UltimateComicTranslatorTool
         private void rewrite()
         {
             if (selectedPt >= 0 && selectedPt < pts.Length)
-            textBox.Text = pts[selectedPt].contents;
+            {
+                String comment = pts[selectedPt].comment;
+                textBox.Text = pts[selectedPt].contents;
+                commentBox.Text = comment;
+                // MessageBox.Show("Text: " + pts[selectedPt].contents + "\nComm: " + pts[selectedPt].comment);
+
+            }
         }
         private void dataChange(object sender, EventArgs e)
         {
             if (selectedPt >= 0)
             {
-                pts[selectedPt].contents = textBox.Text;
+                pts[selectedPt].comment = commentBox.Text;
             }
         }
         private void redraw()
@@ -241,17 +257,24 @@ namespace UltimateComicTranslatorTool
             public int Y;
             public String file;
             public String contents;
-            public Pt(int X_, int Y_, String file_, String contents_)
+            public String comment;
+            public Pt(int X_, int Y_, String file_, String contents_, String comment_)
             {
                 X = X_;
                 Y = Y_;
                 file = file_;
                 contents = contents_;
+                comment = comment_;
             }
             public Pt()
             {
 
             }
+        }
+
+        private void LP_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

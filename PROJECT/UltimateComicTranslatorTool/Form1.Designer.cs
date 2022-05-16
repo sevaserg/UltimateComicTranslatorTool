@@ -39,13 +39,19 @@ namespace UltimateComicTranslatorTool
             this.pageChoice = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.textBox = new System.Windows.Forms.TextBox();
+            this.commentBox = new System.Windows.Forms.TextBox();
             this.mainMenu.SuspendLayout();
             this.LP.SuspendLayout();
             this.workTLP.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -67,10 +73,10 @@ namespace UltimateComicTranslatorTool
             // LP
             // 
             this.LP.ColumnCount = 2;
-            this.LP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.25F));
+            this.LP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.75F));
             this.LP.Controls.Add(this.workTLP, 0, 0);
-            this.LP.Controls.Add(this.textBox, 1, 0);
+            this.LP.Controls.Add(this.splitContainer1, 1, 0);
             this.LP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LP.Location = new System.Drawing.Point(0, 24);
             this.LP.Name = "LP";
@@ -79,6 +85,7 @@ namespace UltimateComicTranslatorTool
             this.LP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LP.Size = new System.Drawing.Size(800, 471);
             this.LP.TabIndex = 1;
+            this.LP.Paint += new System.Windows.Forms.PaintEventHandler(this.LP_Paint);
             // 
             // workTLP
             // 
@@ -93,7 +100,7 @@ namespace UltimateComicTranslatorTool
             this.workTLP.RowCount = 2;
             this.workTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.2381F));
             this.workTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.761905F));
-            this.workTLP.Size = new System.Drawing.Size(394, 465);
+            this.workTLP.Size = new System.Drawing.Size(524, 465);
             this.workTLP.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -111,7 +118,7 @@ namespace UltimateComicTranslatorTool
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(388, 40);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
@@ -155,7 +162,7 @@ namespace UltimateComicTranslatorTool
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(388, 413);
+            this.panel1.Size = new System.Drawing.Size(518, 413);
             this.panel1.TabIndex = 1;
             // 
             // pictureBox
@@ -166,17 +173,48 @@ namespace UltimateComicTranslatorTool
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Cursor = System.Windows.Forms.Cursors.HSplit;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(533, 3);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.textBox);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.commentBox);
+            this.splitContainer1.Size = new System.Drawing.Size(264, 465);
+            this.splitContainer1.SplitterDistance = 180;
+            this.splitContainer1.TabIndex = 1;
+            // 
             // textBox
             // 
             this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox.Location = new System.Drawing.Point(403, 3);
+            this.textBox.Location = new System.Drawing.Point(0, 0);
             this.textBox.Multiline = true;
             this.textBox.Name = "textBox";
             this.textBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox.Size = new System.Drawing.Size(394, 465);
+            this.textBox.Size = new System.Drawing.Size(264, 175);
             this.textBox.TabIndex = 1;
+            // 
+            // commentBox
+            // 
+            this.commentBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.commentBox.Location = new System.Drawing.Point(3, 3);
+            this.commentBox.Multiline = true;
+            this.commentBox.Name = "commentBox";
+            this.commentBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.commentBox.Size = new System.Drawing.Size(258, 272);
+            this.commentBox.TabIndex = 0;
             // 
             // Form1
             // 
@@ -192,11 +230,16 @@ namespace UltimateComicTranslatorTool
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
             this.LP.ResumeLayout(false);
-            this.LP.PerformLayout();
             this.workTLP.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,6 +258,8 @@ namespace UltimateComicTranslatorTool
         private System.Windows.Forms.ComboBox pageChoice;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.TextBox commentBox;
     }
 }
 

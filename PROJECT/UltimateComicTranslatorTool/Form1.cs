@@ -219,7 +219,6 @@ namespace UltimateComicTranslatorTool
                 String comment = pts[selectedPt].comment;
                 textBox.Text = pts[selectedPt].contents;
                 commentBox.Text = comment;
-                // MessageBox.Show("Text: " + pts[selectedPt].contents + "\nComm: " + pts[selectedPt].comment);
 
             }
         }
@@ -227,6 +226,7 @@ namespace UltimateComicTranslatorTool
         {
             if (selectedPt >= 0)
             {
+                pts[selectedPt].contents = textBox.Text;
                 pts[selectedPt].comment = commentBox.Text;
             }
         }
